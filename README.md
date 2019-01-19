@@ -4,7 +4,7 @@ This is the source code for a point-based patrol system with multiple modes and 
 
 This read me will be updated when necessary. 
 
-<a href="https://imgur.com/zyK3DPn"><img src="https://i.imgur.com/zyK3DPn.gif" title="source: imgur.com" /></a>
+<img src="https://i.imgur.com/zyK3DPn.gif" title="source: imgur.com" />
 
 ---
 
@@ -34,7 +34,7 @@ As seen above, the points are editable from the draggable Handles within the Sce
 
 #### Extra GUI Options
 
-<a href="https://imgur.com/eaaBYeK"><img src="https://i.imgur.com/eaaBYeK.png" title="source: imgur.com" /></a>
+<img src="https://i.imgur.com/eaaBYeK.png" title="source: imgur.com" />
 
 **Path Modes**
 
