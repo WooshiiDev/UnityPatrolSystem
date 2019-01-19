@@ -81,3 +81,5 @@ More GUI additions - anything that can be useful or help make things easier.
 The scene handles do not refresh automatically without a select/deselect of the GameObject(s) selected.
 
 Colors will be defaulted to black when it's a new project. 
+
+**Psst... ignore all the commits at the beginning of this... apparenty I suck at embedding gifs**
