@@ -4,7 +4,8 @@ This is the source code for a point-based patrol system with multiple modes and 
 
 This read me will be updated when necessary. 
 
-![Imgur](https://i.imgur.com/zyK3DPn.gifv)
+<img src="https://media.giphy.com/media/4N7vFNhLrfhKEFkpEz/giphy.gif" />
+
 
 ---
 
@@ -26,7 +27,7 @@ The list for the points is very simple showing the position and the delay time b
 
 #### Draggable Patrol Points
 
-![Imgur](https://i.imgur.com/eUWmtHx.gifv)
+<img src="https://media.giphy.com/media/1gTROqMCEJgigUP4U9/giphy.gif" />
 
 As seen above, the points are editable from the draggable Handles within the Scene. This makes things much easier when it comes to setting points
 
