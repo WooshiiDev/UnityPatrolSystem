@@ -106,7 +106,7 @@ public class AI_Patrol : MonoBehaviour
 
             if (delayTimer >= movementDelay)
                 {
-                Agent.destination = GetNextPoint ();
+                Agent.SetDestination(GetNextPoint ());
                 delayTimer = 0;
                 }
             }
