@@ -15,6 +15,7 @@ public class PointData
     public Vector3 point;
     public float moveDelay;
 
+
     public PointData(string _name, Vector3 _point, float _moveDelay)
         {
         name = _name;
