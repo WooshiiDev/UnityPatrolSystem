@@ -648,11 +648,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114335499567599300, guid: 8bfc0caad59247d498d9c314358ed1cc,
-        type: 2}
-      propertyPath: patrolPoints.Array.size
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 4274811720943034, guid: 8bfc0caad59247d498d9c314358ed1cc, type: 2}
       propertyPath: m_LocalPosition.x
       value: 38
@@ -684,36 +679,6 @@ Prefab:
     - target: {fileID: 4274811720943034, guid: 8bfc0caad59247d498d9c314358ed1cc, type: 2}
       propertyPath: m_RootOrder
       value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 114335499567599300, guid: 8bfc0caad59247d498d9c314358ed1cc,
-        type: 2}
-      propertyPath: patrolPoints.Array.data[4].name
-      value: Point 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114335499567599300, guid: 8bfc0caad59247d498d9c314358ed1cc,
-        type: 2}
-      propertyPath: patrolPoints.Array.data[4].point.x
-      value: 62.841743
-      objectReference: {fileID: 0}
-    - target: {fileID: 114335499567599300, guid: 8bfc0caad59247d498d9c314358ed1cc,
-        type: 2}
-      propertyPath: patrolPoints.Array.data[4].point.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114335499567599300, guid: 8bfc0caad59247d498d9c314358ed1cc,
-        type: 2}
-      propertyPath: patrolPoints.Array.data[4].point.z
-      value: 150.61996
-      objectReference: {fileID: 0}
-    - target: {fileID: 114335499567599300, guid: 8bfc0caad59247d498d9c314358ed1cc,
-        type: 2}
-      propertyPath: patrolPoints.Array.data[4].moveDelay
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 135580195140687514, guid: 8bfc0caad59247d498d9c314358ed1cc,
-        type: 2}
-      propertyPath: m_Radius
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8bfc0caad59247d498d9c314358ed1cc, type: 2}

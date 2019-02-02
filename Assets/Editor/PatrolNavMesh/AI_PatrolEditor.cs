@@ -103,8 +103,26 @@ public class AI_PatrolEditor : Editor
         EditorGUI.BeginChangeCheck ();
 
         if (!cakeIsgREAT)
-            if (GUILayout.Button ("Add Point"))
+            if (GUILayout.Button ("Add Point Manually"))
                 cakeIsgREAT = true;
+
+        if (GUILayout.Button ("Add Point (Automatically)"))
+            {
+            Vector3 pointOne = points[0].point;
+            Vector3 pointTwo = points[points.Length - 1].point;
+
+            Vector3 origin = (pointOne + pointTwo) / 2;
+            PointData point = new PointData ("", origin, 10);
+
+            //Undo recording for reverting
+            Undo.RecordObject (t, "Added Point");
+
+            //Add point and update array
+            t.patrolPoints.Add (point);
+            points = t.patrolPoints.ToArray();
+            }
+
+
 
         for (int i = 0; i < t.patrolPoints.Count; i++)
             {
@@ -263,6 +281,11 @@ public class AI_PatrolEditor : Editor
 
     int currentPoint = 0;
 
+    Vector3 DraggableDir = new Vector3 ();
+    bool xLock;
+    bool yLock;
+    bool zLock;
+
     //Setting Buttons/UI
     private void PatrolSettings()
         {
@@ -274,7 +297,29 @@ public class AI_PatrolEditor : Editor
         int patrolIndex = GUILayout.SelectionGrid (patrolOptionsIndex, patrolOptions, 2);
 
         GUILayout.Label ("Point Movement Mode", EditorStyles.boldLabel);
-        int pointIndex = GUILayout.SelectionGrid (pointOptionsIndex, pointMoveOptions, 2);
+
+            GUILayout.BeginHorizontal ();
+                GUILayout.BeginVertical ();
+                    xLock = GUILayout.Toggle (xLock, "X");
+                    yLock = GUILayout.Toggle (yLock, "Y");
+                    zLock = GUILayout.Toggle (zLock, "Z");
+                GUILayout.EndVertical ();
+
+            if (GUILayout.Button ("Lock Points") )
+                    {
+                    xLock = false;
+                    yLock = false;
+                    zLock = false;
+                    }
+            GUILayout.EndHorizontal ();
+
+        DraggableDir.x = (xLock) ? 1 : 0;
+        DraggableDir.y = (yLock) ? 1 : 0;
+        DraggableDir.z = (zLock) ? 1 : 0;
+
+
+        // GUILayout.Label ("Point Movement Mode", EditorStyles.boldLabel);
+        // int pointIndex = GUILayout.SelectionGrid (pointOptionsIndex, pointMoveOptions, 2);
 
         //Make sure that the GUI has been pressed and update it from there
         if (GUI.changed)
@@ -287,8 +332,8 @@ public class AI_PatrolEditor : Editor
             t.patrolMode = patrolMode;
             patrolOptionsIndex = patrolIndex;
 
-            pointMovement = (PointMovement)pointIndex;
-            pointOptionsIndex = pointIndex;
+            //pointMovement = (PointMovement)pointIndex;
+            //pointOptionsIndex = pointIndex;
             }
           
         GUILayout.EndArea ();
@@ -392,26 +437,30 @@ public class AI_PatrolEditor : Editor
 
             float size = GetScaleSize (oldPos, pointSize);
 
+            int id = GUIUtility.GetControlID (FocusType.Keyboard);
+
+            newPos = Handles.FreeMoveHandle (id, oldPos, Quaternion.identity, size, Vector3.one / 2, Handles.SphereHandleCap);
+            newPos.x = (DraggableDir.x == 0) ? oldPos.x : newPos.x;
+            newPos.y = (DraggableDir.y == 0) ? oldPos.y : newPos.y;
+            newPos.z = (DraggableDir.z == 0) ? oldPos.z : newPos.z;
+
+            /*
             switch (pointMovement)
                 {
                 case PointMovement.Y:
-                    Handles.color = Handles.yAxisColor;
-                    newPos = Handles.Slider (t.patrolPoints[i].point, Vector3.up, size, Handles.ArrowHandleCap, 0.5f);
+                    newPos = Handles.Slider (t.patrolPoints[i].point, Vector3.up, size, Handles.SphereHandleCap, 0.5f);
                     break;
 
                 case PointMovement.XZ:
-                    //Draggable area
-                    int id = GUIUtility.GetControlID (FocusType.Keyboard);
                     newPos = Handles.Slider2D (id, oldPos, Vector3.up, Vector3.forward, Vector3.right, size, Handles.SphereHandleCap, Vector2.one/2);
-                    //newPos = HandleExt.Position2DHandle (oldPos, Vector3.right, Vector3.forward, GetScaleSize (oldPos, pointSize), 0.5f); 
                     break;
 
                 case PointMovement.XYZ:
-                    newPos = Handles.PositionHandle (t.patrolPoints[i].point, Quaternion.identity);
+                    newPos = Handles.FreeMoveHandle (id, oldPos, Quaternion.identity, size, Vector3.one / 2, Handles.SphereHandleCap);
                     break;
-                }
+                }*/
 
-         
+
             if (EditorGUI.EndChangeCheck ())
                 {
                 Undo.RecordObject (t, "Changed point position"); //Add to undo list
@@ -507,12 +556,12 @@ public static class EditorExt
         return isClicked;
         }
 
-    public static bool CreateButton(string buttonText, GUILayoutOption style, Action action)
+    public static bool CreateButton(string buttonText, GUILayoutOption style, UnityAction action)
         {
         bool isClicked = GUILayout.Button (buttonText, style);
 
         if (isClicked)
-            action ();
+            action.Invoke ();
 
         return isClicked;
         }
